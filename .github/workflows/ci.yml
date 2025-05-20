@@ -25,12 +25,12 @@ jobs:
       run: npm test
 
     - name: Bygg Docker-image
-      run: docker build -t node-docker-app .
-      
+      run: docker build -t nodetest .
+
     - name: Logga in i Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Pusha image
       run: |
-        docker tag node-docker-app ${{ secrets.DOCKER_USERNAME }}/node-docker-app:latest
-        docker push ${{ secrets.DOCKER_USERNAME }}/node-docker-app:latest
+        docker tag nodetest ${{ secrets.DOCKER_USERNAME }}/nodetest:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/nodetest:latest
